@@ -11,7 +11,7 @@ int high = size - 1;
 
 while (low <= high) {
     int mid = low + ((high-low)>>1);
-    if (val[mid] < target) { // recurse right
+    if (val[mid] < target) {
         low = mid + 1;
     } else {
         high = mid - 1;
@@ -24,11 +24,11 @@ while (low <= high) {
 int low = 0;
 int high = size - 1;
 
-// Loop invariant: index is between [low, high+1]
+// Loop invariant: index is between [low-1, high]
 
-while (low <= high) {
+while (low <= high) { 
     int mid = low + ((high-low)>>1);
-    if (val[mid] < target) { // recurse right
+    if (val[mid] <= target) {
         low = mid + 1;
     } else {
         high = mid - 1;
