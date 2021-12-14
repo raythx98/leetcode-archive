@@ -40,11 +40,66 @@ while (low <= high) {
 
 #### • Quick Sort (in-place, NOT stable)
 ```
+int partition(vector<int> &values, int left, int right) {
+    int mid = left + (right - left) / 2;
+    int val = values[mid];
+    while(left <= right) {
+        while(values[left] < val) {
+            left++;
+        }
+        while(values[right] > val) {
+            right--;
+        }
+        if(left <= right) {
+            int temp = values[left];
+            values[left] = values[right];
+            values[right] = temp;
+            left++;
+            right--;
+        }
+    }
+    return left;
+}
+
+void quicksort(vector<int> &values, int left, int right) {
+    if(left < right) {
+        int pivotIndex = partition(values, left, right);
+        quicksort(values, left, pivotIndex - 1);
+        quicksort(values, pivotIndex, right);
+    }
+}
 ```
 #### • Merge Sort - Linked List (stable, NOT in-place)
 ```
 ```
 #### • Merge Sort - Arrays (stable, NOT in-place)
+```
+void outPlaceMerge(vector<int> &nums, int low, int mid, int high) {
+    if (low >= high) return;
+    int l = low;
+    int r = mid + 1;
+    int k = 0;
+    int size = high - low + 1;
+    vector<int> sorted(size, 0);
+    while (l <= mid and r <= high)
+        sorted[k++] = nums[l] < nums[r] ? nums[l++] : nums[r++];
+    while (l <= mid) 
+        sorted[k++] = nums[l++];
+    while (r <= high) 
+        sorted[k++] = nums[r++];
+    for (k = 0; k < size; k++)
+        nums[k + low] = sorted[k];
+}
+
+void mergeSort(vector<int> &nums, int low, int high) {
+    if (low >= high) return;
+    int mid = (high - low) / 2 + low;
+    mergeSort(nums, low, mid);
+    mergeSort(nums, mid + 1, high);
+    outPlaceMerge(nums, low, mid, high);
+}
+```
+#### • Radix Sort ()
 ```
 ```
 ### Graph Traversal
@@ -59,5 +114,32 @@ while (low <= high) {
 ```
 ```
 #### • DFS (Recursion)
+```
+```
+### Knapsack Problem
+#### • Recursion (Memoization)
+```
+map<int, map<int, int>> dp;
+    
+int dp_contains(int target, int index) {
+    if (dp.count(target)) {
+        if (dp[target].count(index)) return true;
+        return false;
+    }
+    return false;
+}
+
+int read(int target, int index) {
+    return dp[target][index];
+}
+
+void write(int target, int index, int val) {
+    dp[target][index] = val;
+}
+```
+#### • DP Table (2D)
+```
+```
+#### • DP Table (Rolling 1D)
 ```
 ```
