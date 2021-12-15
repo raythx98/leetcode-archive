@@ -137,7 +137,7 @@ void write(int target, int index, int val) {
     dp[target][index] = val;
 }
 ```
-#### • DP Table (2D) - [LeetCode Coin Change Problem](https://leetcode.com/problems/coin-change/)
+#### • DP Table (2D) - [LeetCode Coin Change 1 Problem](https://leetcode.com/problems/coin-change/)
 ```
 int coinChange(vector<int>& coins, int amount) {
     if (amount == 0) return 0;
@@ -158,7 +158,7 @@ int coinChange(vector<int>& coins, int amount) {
     return dp[coins.size()-1][amount] > amount ? -1 : dp[coins.size()-1][amount];
 }
 ```
-#### • DP Table (Rolling 1D)
+#### • DP Table (Rolling 1D) [LeetCode Coin Change 2 Problem](https://leetcode.com/problems/coin-change-2/)
 ```
 int change(int amount, vector<int>& coins) {
     if (amount == 0) return 1;
