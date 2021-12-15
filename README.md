@@ -148,16 +148,88 @@ void mergeSort(vector<int> &nums, int low, int high) {
 ```
 ### Graph Traversal
 
-#### • BFS (Queue)
+#### • Inorder (Left, Root, Right) Stack
+```
+void addLeft(stack<TreeNode*> *node_stack, TreeNode* node) {
+    while(node) {
+        node_stack->push(node);
+        node = node->left;
+    }
+}
+
+vector<int> inorderTraversal(TreeNode* root) {
+    if (!root) return {};
+    stack<TreeNode*> node_stack;
+    addLeft(&node_stack, root);
+    vector<int> ans;
+    while(!node_stack.empty()) {
+        TreeNode* curr = node_stack.top();
+        node_stack.pop();
+        ans.push_back(curr->val);
+        if (curr->right) addLeft(&node_stack, curr->right);
+    }
+    return ans;
+}
+```
+#### • Preorder (Root, Left, Right) Stack
+```
+vector<int> preorderTraversal(TreeNode* root) {
+    if (!root) return {};
+    stack<TreeNode*> node_stack;
+    vector<int> ans;
+    node_stack.push(root);
+    while (!node_stack.empty()) {
+        TreeNode* curr = node_stack.top();
+        node_stack.pop();
+        ans.push_back(curr->val);
+        if (curr->right) node_stack.push(curr->right);
+        if (curr->left) node_stack.push(curr->left);
+    }
+    return ans;
+}
+```
+#### • Postorder (Left, Right, Root) Stack
+```
+if (!root) return {};
+vector<TreeNode*> explored_rhs;
+stack<TreeNode*> node_stack;
+addLeft(&node_stack, root);
+vector<int> ans;
+while(!node_stack.empty()) {
+    TreeNode* curr = node_stack.top();
+    if (curr->right && find(explored_rhs.begin(), explored_rhs.end(), 
+                            curr->right) == explored_rhs.end()) {
+        explored_rhs.push_back(curr->right);
+        addLeft(&node_stack, curr->right);
+        continue;
+    }
+    node_stack.pop();
+    ans.push_back(curr->val);
+}
+return ans;
+}
+```
+#### • Levelorder (BFS) Queue
+```
+vector<int> levelOrder(TreeNode* root) {
+    if (!root) return {};
+    queue<TreeNode*> node_queue;
+    vector<int> ans;
+    node_queue.push(root);
+    while (!node_queue.empty()) {
+        TreeNode* curr = node_queue.front();
+        node_queue.pop();
+        if (curr->left) node_queue.push(curr->left);
+        if (curr->right) node_queue.push(curr->right);
+        ans.push_back(curr->val);
+    }
+    return ans;
+}
+```
+#### • DFS (Recursion)
 ```
 ```
 #### • BFS (Recursion)
-```
-```
-#### • DFS (Stack)
-```
-```
-#### • DFS (Recursion)
 ```
 ```
 ### Knapsack Problem
