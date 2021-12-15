@@ -99,7 +99,7 @@ void mergeSort(vector<int> &nums, int low, int high) {
     outPlaceMerge(nums, low, mid, high);
 }
 ```
-#### • Radix Sort (stable, in-place, `O(d(n+k))`)
+#### • Radix Sort (stable, in-place, _O(d(n+k))_)
 ```
 ```
 ### Graph Traversal
