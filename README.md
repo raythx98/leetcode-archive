@@ -228,9 +228,11 @@ vector<int> levelOrder(TreeNode* root) {
 ```
 #### • DFS (Recursion)
 ```
-```
-#### • BFS (Recursion)
-```
+vector<int> ans;
+if (!root) return;
+ans.push_back(root->val);
+if (root->left) recurse(root->left);
+if (root->right) recurse(root->right);
 ```
 ### Knapsack Problem
 #### • Recursion (Memoization)
