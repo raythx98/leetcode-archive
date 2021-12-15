@@ -160,4 +160,19 @@ int coinChange(vector<int>& coins, int amount) {
 ```
 #### • DP Table (Rolling 1D)
 ```
+int change(int amount, vector<int>& coins) {
+    if (amount == 0) return 1;
+    if (coins.empty()) return 0;
+    int dp[amount+1];
+    dp[0] = 1;
+    for (int i = 1; i < amount + 1; i++) {
+        dp[i] = 0;
+    }
+    for (auto &c: coins) {
+        for (int i = 1; i < amount + 1; i++) {
+            dp[i] = i - c >= 0 ? dp[i - c] + dp[i] : dp[i];
+        }
+    }
+    return dp[amount];
+}
 ```
