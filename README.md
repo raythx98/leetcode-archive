@@ -74,7 +74,7 @@ void quicksort(vector<int> &values, int left, int right) {
 ```
 #### • Merge Sort - Arrays (stable, NOT in-place)
 ```
-void outPlaceMerge(vector<int> &nums, int low, int mid, int high) {
+void TopDownMerge(vector<int> &nums, int low, int mid, int high) {
     if (low >= high) return;
     int l = low;
     int r = mid + 1;
@@ -96,7 +96,7 @@ void mergeSort(vector<int> &nums, int low, int high) {
     int mid = (high - low) / 2 + low;
     mergeSort(nums, low, mid);
     mergeSort(nums, mid + 1, high);
-    outPlaceMerge(nums, low, mid, high);
+    TopDownMerge(nums, low, mid, high);
 }
 ```
 #### • Radix Sort (stable, in-place, _O(d(n+k))_)
