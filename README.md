@@ -1,5 +1,22 @@
 # leetcode-solutions
 
+### Defining Custom Comparators
+```
+class Compare {
+public:
+    bool operator() (pair<int, string> &pair1, pair<int, string> &pair2){
+        if (pair1.first == pair2.first) return pair1.second > pair2.second;
+        
+        return pair1.first < pair2.first;
+    }
+};
+
+```
+
+#### • Declaring a Priority Queue
+
+```priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;```
+
 ### Binary Search
 
 #### • Minimum position with duplicates
