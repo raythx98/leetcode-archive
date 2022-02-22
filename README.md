@@ -10,12 +10,17 @@ public:
         return pair1.first < pair2.first;
     }
 };
-
 ```
 
 #### • Declaring a Priority Queue
 
-```priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;```
+```
+priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
+
+pq.push({i.second, i.first});
+pq.top().second);
+pq.pop();
+```
 
 ### Binary Search
 
