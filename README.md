@@ -355,7 +355,7 @@ return ans.size() == numCourses ? ans : vector<int>();
 ```
 vector<vector<pi>> adj_list(graph.size(), vector<pi>());
 priority_queue<pi, vector<pi>, Compare> pq;
-vector<int> explored = vector<graph.size(), 0);
+vector<bool> explored = vector<graph.size(), 0);
 // G is an adjacency-list, where they store the edges as grid numbers
 // pq will store estimates of node in frontier
 
@@ -367,7 +367,7 @@ while (!pq.empty()) {
     pq.pop();
     if (i == graph.size()-1) return cost;
     if (explored[i]) continue;
-    explored[i] = 1;
+    explored[i] = true;
 
     // relax
     for (auto &[nb_cost, nb_i]: adj_list[i]) {
@@ -376,4 +376,32 @@ while (!pq.empty()) {
 }
 
 return 0;
+```
+#### Minimum Spanning Tree [LeetCode MST Problem](https://leetcode.com/problems/min-cost-to-connect-all-points/)
+```
+// prim's algorithm
+priority_queue<pi, vector<pi>, Compare> pq;
+vector<vector<pi>> adj_list(graph.size(), vector<pi>());
+vector<bool> explored(points.size());
+
+// from starting point
+pq.push({0, 0});
+int total_cost = 0;
+
+while (!pq.empty()) {
+    auto [cost, i] = pq.top();
+    pq.pop();
+    if (explored[i]) continue;
+    total_cost += cost; 
+    explored[i] = true;
+
+    // iterate through adjacent edges and push unexplored vertices
+    for (auto &[nb_cost, nb_i]: adj_list[i]) {
+        if (!explored[nb_i]) {
+            pq.push({nb_cost, nb_i});
+        }
+    }
+}
+
+return total_cost;
 ```
