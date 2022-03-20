@@ -317,3 +317,37 @@ int change(int amount, vector<int>& coins) {
     return dp[amount];
 }
 ```
+### Graph Theory
+#### Topological Sort [LeetCode Course Schedule 2 Problem](https://leetcode.com/problems/course-schedule-ii/)
+```
+// build graph
+vector<vector<int>> out_edges(numCourses, vector<int>());
+vector<int> in_degree(numCourses, 0);
+queue<int> frontier; // frontier always has in-degree == 0
+vector<int> ans;
+
+
+for (auto &prerequisite: prerequisites) {
+    in_degree[prerequisite.front()]++;
+    out_edges[prerequisite.back()].push_back(prerequisite.front());
+};
+
+for (int i = 0; i < numCourses; i++) {
+    if (!in_degree[i]) {
+        frontier.push(i);
+    }
+}
+
+while (!frontier.empty()) {
+    int pop_node = frontier.front();
+    frontier.pop();
+    ans.push_back(pop_node);
+    for (auto &edge: out_edges[pop_node]) {
+        if (!--in_degree[edge]) {
+            frontier.push(edge);
+        }
+    }
+}
+
+return ans.size() == numCourses ? ans : vector<int>();
+```
