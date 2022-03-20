@@ -1,24 +1,88 @@
 # leetcode-solutions
 
-### Defining Custom Comparators
+### Custom Comparators
+#### • Useful Custom Comparators
+sort in descending order:
+```
+greater<int> // opposite for priority queue
+```
+sort in ascending order:
+```
+less<int> // opposite for priority queue
+```
+
+#### • Defining Custom Comparators
+for priority queue
 ```
 class Compare {
 public:
     bool operator() (pair<int, string> &pair1, pair<int, string> &pair2){
-        if (pair1.first == pair2.first) return pair1.second > pair2.second;
-        
-        return pair1.first < pair2.first;
+        if (pair1.first == pair2.first) return pair1.second > pair2.second; // smallest first
+        return pair1.first < pair2.first; // largest first
     }
 };
 ```
-
-#### • Declaring a Priority Queue
+for sorting
+```
+struct Compare
+{
+    inline bool operator() (const pi& pair1, const pi& pair2)
+    {
+        if (pair1.first == pair2.first) return pair1.second < pair2.second; // smallest first
+        return pair1.first < pair2.first; // largest first
+    }
+};
+```
+### Common Data Structures
+#### • Vector
 
 ```
-priority_queue<pair<int, string>, vector<pair<int, string>>, Compare> pq;
 
-pq.push({i.second, i.first});
-pq.top().second);
+```
+
+#### • Set
+
+```
+
+```
+
+#### • Map
+
+```
+
+```
+
+#### • Stack
+
+```
+stack<int> s;
+s.push(10);
+s.top();
+s.pop();
+s.empty();
+```
+
+#### • Queue
+
+```
+queue<int> q;
+q.push(10);
+q.front();
+q.pop();
+q.empty();
+
+q.back(); //last element in queue
+```
+
+#### • Priority Queue
+
+```
+priority_queue<int, vector<int>> pq; // largest elements first
+priority_queue<int, vector<int>, greater<int>> pq; // smallest elements first
+priority_queue<pi, vector<pi>, Compare> pq;
+
+pq.push({cost, i});
+auto &[cost, i] = pq.top();
 pq.pop();
 ```
 
@@ -321,18 +385,12 @@ int change(int amount, vector<int>& coins) {
 #### Topological Sort [LeetCode Course Schedule 2 Problem](https://leetcode.com/problems/course-schedule-ii/)
 ```
 // build graph
-vector<vector<int>> out_edges(numCourses, vector<int>());
-vector<int> in_degree(numCourses, 0);
+vector<vector<int>> out_edges(graph.size(), vector<int>());
+vector<int> in_degree(graph.size(), 0);
 queue<int> frontier; // frontier always has in-degree == 0
 vector<int> ans;
 
-
-for (auto &prerequisite: prerequisites) {
-    in_degree[prerequisite.front()]++;
-    out_edges[prerequisite.back()].push_back(prerequisite.front());
-};
-
-for (int i = 0; i < numCourses; i++) {
+for (int i = 0; i < graph.size(); i++) {
     if (!in_degree[i]) {
         frontier.push(i);
     }
