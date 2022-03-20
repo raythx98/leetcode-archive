@@ -351,3 +351,29 @@ while (!frontier.empty()) {
 
 return ans.size() == numCourses ? ans : vector<int>();
 ```
+#### Dijkstra's Algorithm [LeetCode Minimum Cost Problem](https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/)
+```
+vector<vector<pi>> adj_list(graph.size(), vector<pi>());
+priority_queue<pi, vector<pi>, Compare> pq;
+vector<int> explored = vector<graph.size(), 0);
+// G is an adjacency-list, where they store the edges as grid numbers
+// pq will store estimates of node in frontier
+
+// first node
+pq.push({0, 0});
+
+while (!pq.empty()) {
+    auto &[cost, i] = pq.top();
+    pq.pop();
+    if (i == graph.size()-1) return cost;
+    if (explored[i]) continue;
+    explored[i] = 1;
+
+    // relax
+    for (auto &[nb_cost, nb_i]: adj_list[i]) {
+        pq.push({nb_cost + cost, nb_i});
+    }
+}
+
+return 0;
+```
