@@ -41,15 +41,65 @@ struct Compare
 ```
 
 #### • Set
-
+- ###### if val exists
 ```
-
+// creates new val
+s[val]
+// only finds
+s.at(val)
+```
+- ###### whether val exists
+```
+s.find(val) != s.end()
+s.count(val)
+```
+- ###### find with val
+```
+// iterator
+map<type, type>::iterator it = s.find(val);
+// index
+distance(s.begin(), s.find(val));
+```
+- ###### delete
+```
+// key
+s.erase(key)
+// index
+s.erase(it)
+s.erase(it1, it2)
+// clear
+s.clear()
 ```
 
 #### • Map
-
+- ###### if val exists
 ```
-
+// creates new val
+m[val]
+// only finds
+m.at(val)
+```
+- ###### whether val exists
+```
+m.find(val) != m.end()
+m.count(val)
+```
+- ###### find with val
+```
+// iterator
+map<type, type>::iterator it = m.find(val);
+// index
+distance(m.begin(), m.find(val));
+```
+- ###### erasing
+```
+// key
+m.erase(key)
+// index
+m.erase(it)
+m.erase(it1, it2)
+// clear
+m.clear()
 ```
 
 #### • Stack
