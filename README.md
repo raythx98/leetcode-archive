@@ -72,12 +72,12 @@ s.clear()
 ```
 
 #### • Map
-- ###### if val exists
+- ###### get val from key
 ```
 // creates new val
-m[val]
+m[key]
 // only finds
-m.at(val)
+m.at(key)
 ```
 - ###### whether val exists
 ```
@@ -137,39 +137,45 @@ pq.pop();
 ```
 
 ### Binary Search
+Thought Process:
+1. Index is found once low = high
+`while (low < high)`
+2. Right bias or left bias?
+left: `int mid = low + ((high - low) >> 1);`
+right: `int mid = low + ((high - low + 1) >> 1);`
+3. Equalities are flexible, but always include/exclude mid correctly
+`if (target > nums[mid])` 
+then    `low = mid + 1; // mid is not target, so exclude`
+else `high = mid; // mid might be target, so include`
+4. If unsure, use 2 elements and observe binary search behaviour
 
-#### • Minimum position with duplicates
+#### • Left bias
 ```
-int low = 0;
-int high = size - 1;
-
-// Loop invariant: index is between [low, high+1]
-
-while (low <= high) {
-    int mid = low + ((high-low)>>1);
-    if (val[mid] < target) {
+// Loop invariant: if found, index is between [low, high]
+while (low < high) {
+    int mid = low + ((high - low) >> 1);
+    if (target > nums[mid]) {
         low = mid + 1;
     } else {
-        high = mid - 1;
+        high = mid;
     }
 }
+return nums[low] == target ? low : -1;
 ```
 
-#### • Maximum position with duplicates
+#### • Right bias 
 ```
-int low = 0;
-int high = size - 1;
-
-// Loop invariant: index is between [low-1, high]
-
-while (low <= high) { 
-    int mid = low + ((high-low)>>1);
-    if (val[mid] <= target) {
-        low = mid + 1;
+// Loop invariant: if found, index is between [low, high]
+int low = 0, high = nums.size() - 1;
+while (low < high) {
+    int mid = low + ((high - low + 1) >> 1);
+    if (target < nums[mid]) {
+        high = mid - 1;
     } else {
-        high = mid - 1;
+        low = mid;
     }
 }
+return nums[low] == target ? low : -1;
 ```
 
 ### Sort
