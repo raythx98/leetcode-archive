@@ -4,7 +4,6 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) {
-        
         // ensure list1 contains smallest node
         if (!list1) return list2;
         if (!list2) return list1;
@@ -30,9 +29,8 @@ public:
                 prev = prev->next;
             }
         }
-        
+
         if (list2) prev->next = list2;
-        
         return head;
     }
 };
