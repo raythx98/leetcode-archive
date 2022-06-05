@@ -147,7 +147,7 @@ right: `int mid = low + ((high - low + 1) >> 1);`
 `if (target > nums[mid])` 
 then    `low = mid + 1; // mid is not target, so exclude`
 else `high = mid; // mid might be target, so include`
-4. If unsure, use 2 elements and observe binary search behaviour
+4. If unsure, use 2 elements and observe behaviour
 
 #### • Left bias
 ```
