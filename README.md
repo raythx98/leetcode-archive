@@ -35,18 +35,25 @@ struct Compare
 ```
 ### Common Data Structures
 #### • Vector
-
+- ###### 
 ```
 
 ```
 
 #### • Set
-- ###### if val exists
+- ###### set val using key
 ```
 // creates new val
-s[val]
+s[key] = val
 // only finds
-s.at(val)
+s.at(key)
+```
+- ###### get val from key
+```
+// creates new val
+s[key]
+// only finds
+s.at(key)
 ```
 - ###### whether val exists
 ```
