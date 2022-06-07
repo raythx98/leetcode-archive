@@ -41,19 +41,9 @@ struct Compare
 ```
 
 #### • Set
-- ###### set val using key
+- ###### insert val
 ```
-// creates new val
-s[key] = val
-// only finds
-s.at(key)
-```
-- ###### get val from key
-```
-// creates new val
-s[key]
-// only finds
-s.at(key)
+s.insert(val)
 ```
 - ###### whether val exists
 ```
@@ -63,14 +53,14 @@ s.count(val)
 - ###### find with val
 ```
 // iterator
-map<type, type>::iterator it = s.find(val);
+set<type>::iterator it = s.find(val);
 // index
 distance(s.begin(), s.find(val));
 ```
-- ###### delete
+- ###### erasing
 ```
-// key
-s.erase(key)
+// val
+s.erase(val)
 // index
 s.erase(it)
 s.erase(it1, it2)
@@ -79,9 +69,13 @@ s.clear()
 ```
 
 #### • Map
+- ###### set val from key
+```
+m[key] = val
+```
 - ###### get val from key
 ```
-// creates new val
+// creates new 
 m[key]
 // only finds
 m.at(key)
@@ -134,6 +128,8 @@ q.back(); //last element in queue
 #### • Priority Queue
 
 ```
+using pi = pair<int, int>;
+
 priority_queue<int, vector<int>> pq; // largest elements first
 priority_queue<int, vector<int>, greater<int>> pq; // smallest elements first
 priority_queue<pi, vector<pi>, Compare> pq;
