@@ -34,10 +34,65 @@ struct Compare
 };
 ```
 ### Common Data Structures
-#### • Vector
-- ###### 
+- ###### find_if
 ```
-
+find_if(v.rbegin(), v.rend(),
+    [](int i) { return i == 42; }
+);
+```
+- ###### erase-remove idiom
+```
+v.erase(remove_if(v.begin(), v.end(),
+    [&del_val](int& val)->bool{
+        return del_val == val
+    }
+), v.end())
+```
+#### • Vector
+- ###### initialize vector
+```
+vector<int> v(size, element);
+vector<int, vector<int>> v(size_r, vector<int>(size_c, element));
+```
+- ###### access vector elements
+```
+v[idx]
+v.front()
+v.back()
+```
+- ###### insert val
+```
+v.push_back(val)
+v.insert(v.begin(), offset)
+```
+- ###### whether val exists
+```
+// unsorted vector
+find(v.begin(), v.end(), val) != v.end()
+// sorted vector
+binary_search(v.begin(), v.end(), val)
+```
+- ###### find with val
+```
+// iterator
+vector<type>::iterator it = v.find(val);
+// index
+distance(v.begin(), v.find(v.begin(), v.end(), val));
+```
+- ###### get nth element
+```
+v.begin() + n
+```
+- ###### erasing
+```
+v.pop_back();
+// val
+v.erase(val)
+// index
+v.erase(it)
+v.erase(it1, it2)
+// clear
+v.clear()
 ```
 
 #### • Set
@@ -56,6 +111,10 @@ s.count(val)
 set<type>::iterator it = s.find(val);
 // index
 distance(s.begin(), s.find(val));
+```
+- ###### get nth element
+```
+advance(s.begin(), n)
 ```
 - ###### erasing
 ```
@@ -91,6 +150,10 @@ m.count(val)
 map<type, type>::iterator it = m.find(val);
 // index
 distance(m.begin(), m.find(val));
+```
+- ###### get nth element
+```
+advance(m.begin(), n)
 ```
 - ###### erasing
 ```
