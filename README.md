@@ -34,6 +34,22 @@ struct Compare
 };
 ```
 ### Common Data Structures
+- ###### Node definition
+```
+struct Node {
+    int val;
+    Node* next;
+
+    Node(int val, Node* next){
+        this->val = val;
+        this->next = next;
+    }
+    
+    bool operator <(const Node& node){
+        return val < node.val;
+    }
+};
+```
 - ###### find_if
 ```
 find_if(v.rbegin(), v.rend(),
