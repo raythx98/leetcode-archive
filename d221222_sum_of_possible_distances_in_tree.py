@@ -1,5 +1,5 @@
-# time: O()
-# space: O()
+# time: O(v+e)
+# space: O(v+e)
 from collections import defaultdict
 class Solution:
     def sumOfDistancesInTree(self, n: int, edges: List[List[int]]) -> List[int]:
