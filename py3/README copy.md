@@ -5,13 +5,13 @@ Thought Process:
 1. Index is found once low = high
 `while low < high`
 2. Right bias or left bias?
-left bias: `mid = low + ((high - low) >> 1)`
-right bias: `mid = low + ((high - low + 1) >> 1)`
-1. Equalities are flexible, but always include/exclude mid correctly
-`if (target > nums[mid])` 
-then    `low = mid + 1; // mid is not target, so exclude`
-else `high = mid; // mid might be target, so include`
-1. If unsure, use 2 elements and observe behaviour
+   - left bias: `mid = low + ((high - low) >> 1)`
+   - right bias: `mid = low + ((high - low + 1) >> 1)`
+3. Equalities are flexible, but always include/exclude mid correctly
+   - if `target > nums[mid]` 
+     - then    `low = mid + 1` # mid is not target, so exclude
+   - else `high = mid` # mid might be target, so include
+4. If unsure, use 2 elements and observe behaviour
 
 #### • Left bias
 ```py3
@@ -115,45 +115,17 @@ thisSet.issuperset(other)
 set >= other # whether every element in other is in the set.
 set > other # proper supserset, set >= other and set != other.
 
-union(*others)
 set | other | ...
-Return a new set with elements from the set and all others.
+union(*others) # Return a new set with elements from the set and all others.
 
-Changed in version 2.6: Accepts multiple input iterables.
-
-intersection(*others)
 set & other & ...
-Return a new set with elements common to the set and all others.
+intersection(*others) # Return a new set with elements common to the set and all others.
 
-Changed in version 2.6: Accepts multiple input iterables.
-
-difference(*others)
 set - other - ...
-Return a new set with elements in the set that are not in the others.
+difference(*others) # Return a new set with elements in the set that are not in the others.
 
-Changed in version 2.6: Accepts multiple input iterables.
-
-symmetric_difference(other)
 set ^ other
-Return a new set with elements in either the set or other but not both.
-
-copy()
-Return a shallow copy of the set.
-
-add(elem)
-Add element elem to the set.
-
-remove(elem)
-Remove element elem from the set. Raises KeyError if elem is not contained in the set.
-
-discard(elem)
-Remove element elem from the set if it is present.
-
-pop()
-Remove and return an arbitrary element from the set. Raises KeyError if the set is empty.
-
-clear()
-Remove all elements from the set.
+symmetric_difference(other) # Return a new set with elements in either the set or other but not both.
 ```
 
 ### Common Data Structures
